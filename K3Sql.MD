@@ -3100,3 +3100,28 @@ WHERE
     OPERA.FISUSE = '1'
     AND OPERA.FENTRYID = 300752;
 ```
+
+> 根据表名查询
+```sql
+--根据表名查表单，单据头表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//HeadEntity//TableName').getstringval()) TableName 
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+--根据表名查表单，子单据头表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//SubHeadEntity//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+--根据表名查表单，单据体表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//EntryEntity//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+--根据表名查表单，子单据体表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//SubEntryEntity//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+  --根据表名查表单，多选基础资料字段表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//MulBaseDataField//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+--根据表名查表单，多选辅助资料字段表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//MulAssistantField//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+--根据表名查表单，分组字段表格，Oracle
+SELECT * FROM (select FID,LOWER(extract(FKernelXML, '//FormMetadata//BusinessInfo//BusinessInfo//Elements//GroupField//TableName').getstringval()) TableName
+  from T_Meta_ObjectType) TempTab WHERE TableName LIKE LOWER('%T_BAS_Attachment%');
+```
